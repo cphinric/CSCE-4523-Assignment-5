@@ -1,0 +1,32 @@
+<!DOCTYPE HTML>
+<html>
+    <head>
+        <link rel="stylesheet" href="style/main.css">
+        <title>Add a Game</title>
+    </head>
+    <body>
+        <div id="banner">
+            <a href="index.html">Go Home</a>
+            <h1>Database Project: Add a Game</h1>
+        </div>
+        <form action="addGame.php" method="POST">
+            <label for="gameId">Game ID: </label>
+            <input type="text" name="gameID" placeholder="ID #" required><br> 
+
+            <label for="teams">Teams: </label>
+            <input type="text" name="teamID1" placeholder="Home Team" required>
+            <label for="teamID2">VS</label>
+            <input type="text" name="teamID2" placeholder="Away Team" required><br>
+
+            <label for="score">Score: </label>
+            <input type="text" name="score1" placeholder="Home Score" required>
+            <label for="vs">VS</label>
+            <input type="text" name="score2" placeholder="Away Score" required><br>
+
+            <label for="date">Date: </label>
+            <input type="date" name="date" required><br>
+
+            <input type="submit">
+        </form>
+    </body>
+</html>
