@@ -83,8 +83,8 @@ public class dbms {
             if(team != 0){
                 String s = "SELECT Location, Nickname, Name, Position FROM PLAYER " +
                             "INNER JOIN TEAM ON PLAYER.TeamID = TEAM.TeamID " +
-                            "WHERE TeamID = '" + team + "' " + 
-                            "AND Position = '"+ position + "';";
+                            "WHERE PLAYER.TeamID = '" + team + "' " + 
+                            "AND PLAYER.Position = '"+ position + "';";
                 dbms.SQLQueryToHTMLTable(s);
             }else{
                 System.out.print("<h2>Invalid team name!</h2><br>" +
