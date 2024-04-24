@@ -108,12 +108,19 @@ public class dbms {
             */
             int team = dbms.getTeamID(args[1]);
             String query = "SELECT GAME.Date, " +
-                "HomeTeam.Location, HomeTeam.Nickname, " +
-                "GAME.Score1, GAME.Score2, " +
-                "AwayTeam.Location, AwayTeam.Nickname " +
+                "HomeTeam.Location AS HomeLocation, HomeTeam.Nickname AS HomeNickname, " +
+                "GAME.Score1 AS HomeScore, GAME.Score2 AS AwayScore, " +
+                "AwayTeam.Location AS AwayLocation, AwayTeam.Nickname AS AwayNickname, " +
+                "CASE " +
+                    "WHEN GAME.Score1 > GAME.Score2 AND HomeTeam.TeamID = '" + team + "' THEN 'Won' " +
+                    "WHEN GAME.Score1 < GAME.Score2 AND AwayTeam.TeamID = '" + team + "' THEN 'Won' " +
+                    "WHEN GAME.Score1 > GAME.Score2 AND AwayTeam.TeamID = '" + team + "' THEN 'Lost' " +
+                    "WHEN GAME.Score1 < GAME.Score2 AND HomeTeam.TeamID = '" + team + "' THEN 'Lost' " +
+                    "ELSE 'Draw' " +
+                "END AS Result " +
                 "FROM GAME " +
                 "INNER JOIN TEAM AS HomeTeam ON GAME.TeamID1 = HomeTeam.TeamID " +
-                "INNER JOIN TEAM AS AwayTeam ON GAME.TeamID2 = AwayTeam.TeamID" +
+                "INNER JOIN TEAM AS AwayTeam ON GAME.TeamID2 = AwayTeam.TeamID " +
                 "WHERE HomeTeam.TeamID = '" + team + "' " +
                 "OR AwayTeam.TeamID = '" + team + "';";
             dbms.SQLQueryToHTMLTable(query);
