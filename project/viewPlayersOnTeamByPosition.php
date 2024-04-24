@@ -7,7 +7,7 @@
     <body>
         <div id="banner">
             <a href="index.html">Go Home</a>
-            <h1>Database Project: View all players in a given position on any team</h1>
+            <h2>Database Project<br>View all players in a given position on any team</h2>
         </div>
         <?php
             $team = $_POST["team"];

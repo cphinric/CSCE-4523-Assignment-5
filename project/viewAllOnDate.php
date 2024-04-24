@@ -7,7 +7,7 @@
     <body>
         <div id="banner">
             <a href="index.html">Go Home</a>
-            <h1>Database Project: View all results on a given date</h1>
+            <h2>Database Project<br>View all results on a given date</h2>
         </div>
         <?php
             $date = $_POST["date"];

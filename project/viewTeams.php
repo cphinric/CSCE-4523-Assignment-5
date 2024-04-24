@@ -7,7 +7,7 @@
     <body>
         <div id="banner">
             <a href="index.html">Go Home</a>
-            <h1>Database Project: View Teams</h1>
+            <h2>Database Project<br>View Teams</h2>
         </div>
         <!--
             view all teams arranged by conference (sorted alphabetically)

@@ -7,7 +7,7 @@
    <body>
       <div id="banner">
          <a href="index.html">Go Home</a>
-         <h1>Database Project: Add a Game</h1>
+         <h2>Database Project<br>Add a Game</h2>
       </div>
       <?php
          $teamID1 = $_POST["teamID1"];

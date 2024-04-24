@@ -126,7 +126,6 @@ public class dbms {
             dbms.SQLQueryToHTMLTable(query);
         }
         else if(args[0].equals("viewAllOnDate")){
-            //TODO: START
             System.out.print("date: " + args[1] +"<br>");
             String query =  "SELECT " +
                             "GAME.Date AS Date, HomeTeam.Location AS Location, " +
@@ -144,11 +143,8 @@ public class dbms {
             System.out.println("<p>The wrong arguments were passed to java</p>");
         }
 
-        
-
         //disconnect
         try{
-            //System.out.println("Goodbye!");
             dbms.disconnect();   
         }catch(Exception e){
             e.printStackTrace();
