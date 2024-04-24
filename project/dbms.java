@@ -21,38 +21,39 @@ public class dbms {
 
         //find out what to do
         if(args[0].equals("addGame")){
-            //TODO: FIX. ADDING DOESNT WORK YET
-            String gameID=args[1];
-            String teamID1=args[2];
-            String teamID2=args[3];
-            String score1=args[4];
-            String score2=args[5];
+            int gameID = dbms.getNextGameID();
+            int teamID1 = dbms.getTeamID(args[1]);
+            int teamID2=dbms.getTeamID(args[2]);
+            String score1=args[3];
+            String score2=args[4];
             String date=args[6];
-            dbms.query(
+            String query = 
                 "INSERT INTO GAME(gameID, teamID1, teamID2, score1, score2, date) "+
-                "VALUES('"+ gameID + "', '"+
-                            teamID1 + "', '" + teamID2 + "', '" +
+                "VALUES(" + gameID + ", '"+ teamID1 + "', '" + teamID2 + "', '" +
                             score1 + "', '" + score2 + "', '" +
-                            date + "');"
-            );
-            dbms.SQLQueryToHTMLTable("SELECT * FROM GAME WHERE gameID = '"+gameID+"';");
+                            date + "');";
+            //System.out.print(query);
+            if(dbms.updateAndConfirm(query)){
+                dbms.SQLQueryToHTMLTable("SELECT * FROM GAME WHERE GameID = "+gameID+";");
+            }else{
+                System.out.print("<p>Error adding game</p>");
+            }
         }
         else if(args[0].equals("addPlayer")){
-            //TODO: FIX. ADDING DOESNT WORK YET
-            String playerID = args[1];
-            String teamID = args[2];
-            String name = args[3];
-            String position = args[4];
-            boolean success = dbms.query(
+            int playerID = dbms.getNextPlayerID();
+            int teamID = dbms.getTeamID(args[1]);
+            String name = args[2];
+            String position = args[3];
+            String query = 
                 "INSERT INTO PLAYER(PlayerID, TeamID, Name, Position)"+
-                "VALUES('"+
-                    playerID+"', '"+
-                    teamID+"', '"+
+                "VALUES("+
+                    playerID+", "+
+                    teamID+", '"+
                     name+"', '"+
-                    position+"');"
-            );
-            if(success){
-                dbms.SQLQueryToHTMLTable("SELECT * FROM PLAYER WHERE PlayerID = '"+playerID+"';");    
+                    position+"');";
+            //System.out.print(query);
+            if(dbms.updateAndConfirm(query)){
+                dbms.SQLQueryToHTMLTable("SELECT * FROM PLAYER WHERE PlayerID = "+playerID+";");    
             }else{
                 System.out.print("<p>Error adding player</p>");
             }
@@ -191,21 +192,24 @@ public class dbms {
             e.printStackTrace();
         }
     }
+    
     /**
      * @param
      *      s string to be sent to SQL
      * @return 
      *      boolean representing whether the query was processed
      * @purpose
-     *      send any string to the database as an SQL query
+     *      attempts to update the database
+     *      returns true if the database changed at all
+     *      returns false otherwise
      */
-    public boolean query(String s){
-        try {
-            return statement.execute(s);
-        } catch (Exception e) {
+    public boolean updateAndConfirm(String s){
+        try{
+            return statement.executeUpdate(s) > 0;
+        }catch(Exception e){
             e.printStackTrace();
-        }
-        return false;
+        }return false;
+        
     }
     /**
      * 
@@ -224,6 +228,46 @@ public class dbms {
             ResultSet data = statement.executeQuery(query);
             while(data.next()){
                 return data.getInt(1);
+            }
+            
+        }catch(Exception e){
+            e.printStackTrace();
+        }return 0;
+    }
+    /**
+     * 
+     * @param
+     *      none
+     * @return
+     *      maximum game ID + 1
+     *      or 0 if an error occurred
+     */
+    public int getNextGameID(){
+        try{
+            String query = "SELECT MAX(GameID) FROM GAME;";
+            ResultSet data = statement.executeQuery(query);
+            while(data.next()){
+                return (data.getInt(1)) + 1;
+            }
+            
+        }catch(Exception e){
+            e.printStackTrace();
+        }return 0;
+    }
+    /**
+     * 
+     * @param
+     *      none
+     * @return
+     *      maximum player ID + 1
+     *      or 0 if an error occurred
+     */
+    public int getNextPlayerID(){
+        try{
+            String query = "SELECT MAX(PlayerID) FROM PLAYER;";
+            ResultSet data = statement.executeQuery(query);
+            while(data.next()){
+                return (data.getInt(1)) + 1;
             }
             
         }catch(Exception e){

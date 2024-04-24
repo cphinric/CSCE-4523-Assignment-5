@@ -10,7 +10,6 @@
          <h1>Database Project: Add a Game</h1>
       </div>
       <?php
-         $gameID = $_POST["gameID"];
          $teamID1 = $_POST["teamID1"];
          $teamID2 = $_POST["teamID2"];
          $score1 = $_POST["score1"];
@@ -19,7 +18,6 @@
 
          $command = 'java -cp .:mysql-connector-java-5.1.40-bin.jar ' .
          'dbms addGame ' .
-         escapeshellarg($gameID) . ' ' . 
          escapeshellarg($teamID1) . ' ' .
          escapeshellarg($teamID2) . ' ' . 
          escapeshellarg($score1) . ' ' .

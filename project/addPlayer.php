@@ -10,13 +10,12 @@
          <h1>Database Project: Add a Player</h1>
       </div>
       <?php
-         $playerID = $_POST["playerID"];
-         $teamID = $_POST["teamID"];
-         $name = $_POST["name"];
+         $teamName = $_POST["teamName"];
+         $playerName = $_POST["playerName"];
          $position = $_POST["position"];
 
-         $command = 'java dbms addPlayer ' . escapeshellarg($playerID) . 
-         ' ' . escapeshellarg($teamID) . ' ' . escapeshellarg($name) .
+         $command = 'java -cp .:mysql-connector-java-5.1.40-bin.jar dbms addPlayer ' . 
+         ' ' . escapeshellarg($teamName) . ' ' . escapeshellarg($playerName) .
          ' ' . escapeshellarg($position);
          
          system($command);
