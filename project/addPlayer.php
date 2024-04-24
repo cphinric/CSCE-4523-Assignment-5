@@ -2,7 +2,7 @@
 <html>
    <head>
       <link rel="stylesheet" href="style/main.css">
-      <title>Add a Game</title>
+      <title>Add a Player</title>
    </head>
    <body>
       <div id="banner">

@@ -26,7 +26,7 @@ public class dbms {
             int teamID2=dbms.getTeamID(args[2]);
             String score1=args[3];
             String score2=args[4];
-            String date=args[6];
+            String date=args[5];
             String query = 
                 "INSERT INTO GAME(gameID, teamID1, teamID2, score1, score2, date) "+
                 "VALUES(" + gameID + ", '"+ teamID1 + "', '" + teamID2 + "', '" +
