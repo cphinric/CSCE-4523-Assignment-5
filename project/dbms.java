@@ -95,7 +95,7 @@ public class dbms {
         else if(args[0].equals("viewTeams")){
             //TODO: FIX. ORDER WRONG
             String s = "SELECT Location, Nickname, Conference FROM TEAM "+
-                        "ORDER BY Conference;";
+                        "ORDER BY Conference ASC, Location ASC;";
             //System.out.println(s);
             dbms.SQLQueryToHTMLTable(s);
         }
