@@ -40,6 +40,9 @@ public class dbms {
             }
         }
         else if(args[0].equals("addPlayer")){
+            //I think, if you input first and last name, you will break the code
+            //it might see it as 2 seperate arguments and get confused
+            //should fix
             int playerID = dbms.getNextPlayerID();
             int teamID = dbms.getTeamID(args[1]);
             String name = args[2];
@@ -62,9 +65,11 @@ public class dbms {
         else if(args[0].equals("viewPlayersOnTeam")){
             int team = dbms.getTeamID(args[1]);
             if(team != 0){
-                String s = "SELECT TEAM.Location, TEAM.Nickname, PLAYER.Name, PLAYER.Position FROM PLAYER " +
+                String s = "SELECT TEAM.Location, TEAM.Nickname, PLAYER.Name, PLAYER.Position " +
+                            "FROM PLAYER " +
                             "INNER JOIN TEAM ON PLAYER.TeamID = TEAM.TeamID " +
-                            "WHERE teamID = " + team + ";";
+                            "WHERE PLAYER.TeamID = " + team + ";";
+                //System.out.print(s);
                 dbms.SQLQueryToHTMLTable(s);
             }else{
                 System.out.print("<h2>Invalid team name!</h2><br>" +
