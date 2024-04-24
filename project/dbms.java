@@ -10,8 +10,8 @@ public class dbms {
     public static void main(String[] args){
 
         //set up connection to database
-        String username = "mhcude";
-        String mySQLpassword = "Roo4bain";
+        String username = "cphinric";
+        String mySQLpassword = "Pahx5loh";
         dbms dbms = new dbms();
         try{
             dbms.initDatabase(username, mySQLpassword);
@@ -64,7 +64,7 @@ public class dbms {
             if(team != 0){
                 String s = "SELECT TEAM.Location, TEAM.Nickname, PLAYER.Name, PLAYER.Position FROM PLAYER " +
                             "INNER JOIN TEAM ON PLAYER.TeamID = TEAM.TeamID " +
-                            "WHERE teamID = " + team + ";";
+                            "WHERE PLAYER.teamID = " + team + ";";
                 dbms.SQLQueryToHTMLTable(s);
             }else{
                 System.out.print("<h2>Invalid team name!</h2><br>" +

@@ -2,7 +2,7 @@
 #turing$ chmod 755 createDB.sh to make it executable
 javac dbms.java
 mysql << EOFMYSQL
-use mhcude;
+use cphinric;
 
 DROP TABLE IF EXISTS PLAYER;
 DROP TABLE IF EXISTS GAME;
