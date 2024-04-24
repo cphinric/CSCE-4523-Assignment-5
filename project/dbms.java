@@ -83,7 +83,7 @@ public class dbms {
             if(team != 0){
                 String s = "SELECT Location, Nickname, Name, Position FROM PLAYER " +
                             "INNER JOIN TEAM ON PLAYER.TeamID = TEAM.TeamID " +
-                            "WHERE PLAYER.TeamID = '" + team + "' " + 
+                            "WHERE PLAYER.TeamID = " + team + " " + 
                             "AND PLAYER.Position = '"+ position + "';";
                 dbms.SQLQueryToHTMLTable(s);
             }else{
@@ -127,7 +127,18 @@ public class dbms {
         }
         else if(args[0].equals("viewAllOnDate")){
             //TODO: START
-            System.out.print("<p>function in progress</p>");
+            System.out.print("date: " + args[1] +"<br>");
+            String query =  "SELECT " +
+                            "GAME.Date AS Date, HomeTeam.Location AS Location, " +
+                            "HomeTeam.Location AS 'Home', HomeTeam.Nickname AS 'Team', " +
+                            "GAME.Score1 AS 'Home Score', GAME.Score2 AS 'Away Score', " +
+                            "AwayTeam.Location AS 'Away', AwayTeam.Nickname AS 'Team' " + 
+                            "FROM GAME " +
+                            "INNER JOIN TEAM AS HomeTeam ON GAME.TeamID1 = HomeTeam.TeamID " +
+                            "INNER JOIN TEAM AS AwayTeam ON GAME.TeamID2 = AwayTeam.TeamID " +
+                            "WHERE GAME.Date = '" + args[1] + "';";
+            System.out.print("query: "+ query +"<br>");
+            dbms.SQLQueryToHTMLTable(query);
         }
         else{
             System.out.println("<p>The wrong arguments were passed to java</p>");
