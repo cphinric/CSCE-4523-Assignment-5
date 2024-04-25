@@ -1,10 +1,10 @@
 TO-DO LIST (sorted by importance)
 --------------------------------------
-1) VIEWTEAMS ORDER BY CONFERENCE WINS
+1) VIEWTEAMS ORDER BY CONFERENCE WINS   [done]
     viewTeams doesnt add up the number of wins, or wins per conference.
 2) ADDPLAYER INPUT W/ SPACES
     addPlayer assumes that the name will be a string, and cant process first and last names because of the space. This can be fixed by encasing the string in quotes probably, just need to look into how it would be passed to the java file
-3) STRING ATTRIBUTES TO ENUMS
+3) STRING ATTRIBUTES TO ENUMS           [done]
     When selecting certain attributes like team or position, there are a limited number of possibilities (32 teams in the NFL, 28 possible positions a player could play). These could just be a dropdown, just gotta figure out the HTML for it
 4) 7TH "COMPLEX" FUNCTION
     this can apparently be anything so could be anything. I'm thinking, you look up a team and get their number of players in each position. (eg cowboys has 3 quarterbacks or whatever)

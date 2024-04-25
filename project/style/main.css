@@ -57,10 +57,15 @@ form{
     background-color: #353538;
     padding-top: 3em;
 }
-form input[type="text"], form input[type="date"]{
+form input[type="text"], form input[type="date"], form select{
     margin-top: 0.5em;
     margin-bottom: 0.5em;
-    height: 2em;
+    height: 3em;
+    border: 0;
+}
+input[type="text"] {
+    padding-block: 0;
+    padding-inline: 0;
 }
 form input[type="submit"]{
     width: 100%;

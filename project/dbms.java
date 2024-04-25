@@ -115,7 +115,7 @@ public class dbms {
                 "LEFT JOIN TEAM AS Loser ON Loser.TeamID = " +
                     "CASE " +
                         "WHEN Winner.TeamID = GAME.TeamID1 THEN GAME.TeamID2 " +
-                        "WHEN Winner.TeamID = GAME.TeamID2 THEN GAME.TeamID1" +
+                        "WHEN Winner.TeamID = GAME.TeamID2 THEN GAME.TeamID1 " +
                     "END " +
                 "GROUP BY Winner.TeamID " +
                 "ORDER BY Winner.Conference ASC, Wins DESC, 'Conference Wins' DESC;";
