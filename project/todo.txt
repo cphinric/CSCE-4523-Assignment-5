@@ -1,0 +1,22 @@
+TO-DO LIST (sorted by importance)
+--------------------------------------
+1) VIEWTEAMS ORDER BY CONFERENCE WINS
+    viewTeams doesnt add up the number of wins, or wins per conference.
+2) ADDPLAYER INPUT W/ SPACES
+    addPlayer assumes that the name will be a string, and cant process first and last names because of the space. This can be fixed by encasing the string in quotes probably, just need to look into how it would be passed to the java file
+3) STRING ATTRIBUTES TO ENUMS
+    When selecting certain attributes like team or position, there are a limited number of possibilities (32 teams in the NFL, 28 possible positions a player could play). These could just be a dropdown, just gotta figure out the HTML for it
+4) 7TH "COMPLEX" FUNCTION
+    this can apparently be anything so could be anything. I'm thinking, you look up a team and get their number of players in each position. (eg cowboys has 3 quarterbacks or whatever)
+5) REPORT
+    report needs to be written 
+6) FILLER DATA
+    More players should be in the database by default, and more games. That won't be hard, just tedious
+7) SERVER HOSTING
+    this probably needs to be hosted on another website, or at least we should know for sure if its ok to host on turing. probably info on blackboard
+    note: just reread the assignment, we can run it all on turing but it has to be apache? i dont really know apache i need to look into it
+8) MAKE IT PRETTY
+    self explanatory. theres a bunch of system.out.println statements that could go away, etc...
+
+once everything is done, tar cvf studentID.tar ./project
+submit tar & report. other person submits "I worked with $NAME"

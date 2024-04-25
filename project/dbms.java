@@ -93,11 +93,34 @@ public class dbms {
             }
         }
         else if(args[0].equals("viewTeams")){
-            //TODO: FIX. ORDER WRONG
-            String s = "SELECT Location, Nickname, Conference FROM TEAM "+
-                        "ORDER BY Conference ASC, Location ASC;";
-            //System.out.println(s);
-            dbms.SQLQueryToHTMLTable(s);
+            String query = 
+                "SELECT  " +
+                    "Winner.Location, " +
+                    "Winner.Nickname, " +
+                    "Winner.Conference, " +
+                    "COUNT(CASE " +
+                        "WHEN GAME.Score1 > GAME.Score2 THEN GAME.TeamID1 " +
+                        "WHEN GAME.Score1 < GAME.Score2 THEN GAME.TeamID2 " +
+                    "END) AS Wins, " +
+                    "COUNT(CASE " +
+                        "WHEN GAME.Score1 > GAME.Score2 AND Winner.Conference = Loser.Conference then GAME.TeamID1 " +
+                        "WHEN GAME.Score1 < GAME.Score2 AND Winner.Conference = Loser.Conference then GAME.TeamID2 " +
+                    "END) AS 'Conference Wins' " +
+                "FROM TEAM as Winner " +
+                "LEFT JOIN GAME ON Winner.TeamID = " +
+                    "CASE " +
+                        "WHEN GAME.score1 > GAME.score2 THEN GAME.TeamID1 " +
+                        "WHEN GAME.score1 < GAME.score2 THEN GAME.TeamID2 " +
+                    "END " +
+                "LEFT JOIN TEAM AS Loser ON Loser.TeamID = " +
+                    "CASE " +
+                        "WHEN Winner.TeamID = GAME.TeamID1 THEN GAME.TeamID2 " +
+                        "WHEN Winner.TeamID = GAME.TeamID2 THEN GAME.TeamID1" +
+                    "END " +
+                "GROUP BY Winner.TeamID " +
+                "ORDER BY Winner.Conference ASC, Wins DESC, 'Conference Wins' DESC;";
+            
+            dbms.SQLQueryToHTMLTable(query);
         }
         else if(args[0].equals("viewGames")){
             /**
@@ -126,7 +149,7 @@ public class dbms {
             dbms.SQLQueryToHTMLTable(query);
         }
         else if(args[0].equals("viewAllOnDate")){
-            System.out.print("date: " + args[1] +"<br>");
+            //System.out.print("date: " + args[1] +"<br>");
             String query =  "SELECT " +
                             "GAME.Date AS Date, HomeTeam.Location AS Location, " +
                             "HomeTeam.Location AS 'Home', HomeTeam.Nickname AS 'Team', " +
@@ -136,7 +159,7 @@ public class dbms {
                             "INNER JOIN TEAM AS HomeTeam ON GAME.TeamID1 = HomeTeam.TeamID " +
                             "INNER JOIN TEAM AS AwayTeam ON GAME.TeamID2 = AwayTeam.TeamID " +
                             "WHERE GAME.Date = '" + args[1] + "';";
-            System.out.print("query: "+ query +"<br>");
+            //System.out.print("query: "+ query +"<br>");
             dbms.SQLQueryToHTMLTable(query);
         }
         else{
